@@ -19,4 +19,6 @@ Things you may want to cover:
 
 * Deployment instructions
   heroku
-* ...
+
+* heroku URL 本番環境
+  https://dive-into-share.herokuapp.com/
