@@ -9,8 +9,8 @@ module DiveIntoShare
     config.active_record.default_timezone = :local
     config.time_zone = 'Tokyo'
     config.generators do |g|
-      g.assets     false
-      g.helper     false
+      g.assets false
+      g.helper false
     end
   end
 end
