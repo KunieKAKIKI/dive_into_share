@@ -83,3 +83,9 @@ production:
   database: dive_into_share_production
   username: dive_into_share
   password: <%= ENV['DIVE_INTO_SHARE_DATABASE_PASSWORD'] %>
+
+staging:
+  <<: *default
+  database: dive_into_share_staging
+  username: dive_into_share
+  password: <%= ENV['DIVE_INTO_SHARE_DATABASE_PASSWORD'] %>
