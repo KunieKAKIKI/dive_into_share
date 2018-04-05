@@ -28,5 +28,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :development, :staging do
+  gem 'rack-dev-mark'
+end
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'rack-dev-mark'
