@@ -13,4 +13,5 @@
 //= require jquery/dist/jquery.min.js
 //= require rails-ujs
 //= require turbolinks
+//= require toastr
 //= require_tree .
