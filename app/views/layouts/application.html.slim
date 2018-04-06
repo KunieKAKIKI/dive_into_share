@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title
+      | DiveIntoShare
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    = render partial: 'layouts/header'
+    = yield
+
+- unless flash.empty?
+   javascript:
+    - flash.each do |f|
+      type = f[0].to_s.gsub('danger','error').gsub('alert','error').gsub('notice','info')
+      toastr ["#{type}"]("#{f[1]}");
