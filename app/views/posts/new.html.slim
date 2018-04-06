@@ -1,0 +1,18 @@
+
+
+
+- form_with (model: @post)do |f|
+  p
+    = f.select name_of_team options_for_select((1..20).map{|n| ["#{n}番目のチーム", n]}, selected: @hoge.try(:name_of_teams)), {prompt: t('placeholder.name_of_teams')}, class: 'form-control'
+  p
+    = f.select name_of_category options_for_select((1..20).map{|n| ["#{n}番目のカテゴリ", n]}, selected: @hoge.try(:name_of_categorys)), {prompt: t('placeholder.name_of_categorys')}, class: 'form-control'
+  p
+    = f.text_field :title, placeholder: "コメントを入力してください", class: 'form-control'
+  p
+    = f.text_field :discription, placeholder: "コメントを入力してください", class: 'form-control'
+  p
+    = f.file_field :image, placeholder: "アップする画像を選択してください", class: 'form-control'
+  p
+    = f.file_field :upload_file, placeholder: "アップするファイルを選択してください", class: 'form-control'
+  p
+    = f.submit "コメントを作成", class: "btn,btn-primary"
