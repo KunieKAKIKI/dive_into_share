@@ -1,0 +1,24 @@
+h1 投稿詳細画面
+
+p.mb-0 チーム名：#{@post.category.team.name}
+
+| チームメンバー：
+- @post.category.team.users.each do |user|
+  span.mr-3
+    = image_tag 'https://picsum.photos/40/40?image=' + rand(100).to_s
+    = user.name
+p カテゴリ名：#{@post.category.name}
+hr
+
+p タイトル：#{@post.title}
+p.mb-2 内容：#{@post.description}
+hr
+
+h2 コメント
+- @post.comments.each do |comment|
+  p #{comment.user.name}：#{comment.content}
+
+.mt-5
+  = form_with url: post_path(@post) do |f|
+    = f.text_field :content
+    = f.submit 'コメント'

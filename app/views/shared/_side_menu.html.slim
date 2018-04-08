@@ -9,4 +9,4 @@ ul.my-4
         ul.my-4
           -category.posts.each do |post|
             li.my-3
-              = link_to post.title, '#', class: 'text-dark'
+              = link_to post.title, post_path(post), class: 'text-dark'
