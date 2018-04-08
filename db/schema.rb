@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20180406120351) do
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.bigint "team_id"
-    t.string "name"
+    t.bigint "team_id", null: false
+    t.string "name", null: false
     t.text "discription"
     t.string "image"
     t.datetime "created_at", null: false
@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20180406120351) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "post_id"
-    t.bigint "user_id"
-    t.text "content"
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
+    t.text "content", null: false
     t.json "upload_file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(version: 20180406120351) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.bigint "category_id"
-    t.bigint "user_id"
-    t.string "title"
+    t.bigint "category_id", null: false
+    t.bigint "user_id", null: false
+    t.string "title", null: false
     t.text "description"
     t.string "image"
     t.json "upload_file"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20180406120351) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "discription"
     t.string "image"
     t.datetime "created_at", null: false
@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 20180406120351) do
   end
 
   create_table "teams_users", force: :cascade do |t|
-    t.integer "team_id"
-    t.integer "user_id"
+    t.integer "team_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20180406120351) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name", default: "", null: false
+    t.string "name", null: false
     t.text "description"
     t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
