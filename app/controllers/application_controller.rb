@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
 
    private
    def side_menu
-     @teams = Team.all.includes(categories: :posts)
+     return unless user_signed_in?
+     @teams = Team.joins(:users).where(users: { id: current_user.id })
+     .includes(categories: :posts)
    end
 end

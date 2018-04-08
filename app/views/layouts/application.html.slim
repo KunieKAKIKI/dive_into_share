@@ -9,7 +9,8 @@ html
   body
   .container-fruid
     .row
-      .col-5.bg-secondary
-        = render partial: 'shared/side_menu'
+      - if user_signed_in?
+        .col-5.bg-secondary
+          = render partial: 'shared/side_menu'
       .col-7
         = yield

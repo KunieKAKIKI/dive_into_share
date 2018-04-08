@@ -1,12 +1,13 @@
 ul.my-4
-  - @teams.each do |team|
-    li.my-3 = team.name
+  - if @teams.present?
+    - @teams.each do |team|
+      li.my-3 = team.name
 
-    ul.my-4
-      -team.categories.each do |category|
-        li.my-3 = category.name
+      ul.my-4
+        -team.categories.each do |category|
+          li.my-3 = category.name
 
-        ul.my-4
-          -category.posts.each do |post|
-            li.my-3
-              = link_to post.title, post_path(post), class: 'text-dark'
+          ul.my-4
+            -category.posts.each do |post|
+              li.my-3
+                = link_to post.title, post_path(post), class: 'text-dark'

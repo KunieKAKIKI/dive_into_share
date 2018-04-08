@@ -55,6 +55,7 @@ end
 
 #teams_users
 Team.find(1).users = User.all
+User.find(1).teams = Team.all
 
 #post
 posts = [
