@@ -16,7 +16,10 @@ hr
 
 h2 コメント
 - @post.comments.each do |comment|
-  p #{comment.user.name}：#{comment.content}
+  .my-3
+    = image_tag 'https://picsum.photos/40/40?image=' + rand(100).to_s
+    | #{comment.user.name}：#{comment.content}
+    br
 
 .mt-5
   = form_with url: post_path(@post) do |f|
