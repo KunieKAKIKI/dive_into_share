@@ -1,2 +1,28 @@
-h1 Posts#new
-p Find me in app/views/posts/new.html.slim
+
+
+= form_with model: @post, local: true do |f|
+
+  - if @post.errors.any?
+    p #{@post.errors.count}件のエラーがあります。
+    ul
+    - @post.errors.full_messages.each do |msg|
+      li #{msg}
+
+  =f.collection_select(:team_id, Team.all, :id, :name)
+  =f.collection_select(:category_id, Category.all, :id, :name)
+
+  /= f.select name_of_team options_for_select((1..20).map{|n| ["#{n}番目のチーム", n]}, selected: @post.try(:name_of_teams)), {prompt: t('placeholder.name_of_teams')}, class: 'form-control'
+  p
+  /= f.select name_of_category options_for_select((1..20).map{|n| ["#{n}番目のカテゴリ", n]}, selected: @hoge.try(:name_of_categorys)), {prompt: t('placeholder.name_of_categorys')}, class: 'form-control'
+  p
+  = f.label :title
+  = f.text_field :title, placeholder: "タイトルを入力してください", class: 'form-control'
+  p
+  = f.label :description
+  = f.text_area :description, placeholder: "内容を入力してください", class: 'form-control'
+  p
+  = f.file_field :image, placeholder: "アップする画像を選択してください", class: 'form-control'
+  p
+  = f.file_field :upload_file, placeholder: "アップするファイルを選択してください", class: 'form-control'
+  p
+  = f.submit "投稿", class: "btn,btn-primary"
