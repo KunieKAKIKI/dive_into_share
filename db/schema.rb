@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20180410053659) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_categories_on_name", unique: true
+    t.index ["team_id", "name"], name: "index_categories_on_team_id_and_name", unique: true
     t.index ["team_id"], name: "index_categories_on_team_id"
   end
 
