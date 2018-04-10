@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 20180410053659) do
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.bigint "team_id"
-    t.string "name"
-    t.text "discription"
+    t.bigint "team_id", null: false
+    t.string "name", null: false
+    t.text "description"
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 20180410053659) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "post_id"
-    t.bigint "user_id"
-    t.text "content"
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
+    t.text "content", null: false
     t.json "upload_file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -38,18 +38,20 @@ ActiveRecord::Schema.define(version: 20180410053659) do
   end
 
   create_table "memberships", force: :cascade do |t|
-    t.integer "team_id"
-    t.integer "user_id"
+    t.bigint "team_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id", "user_id"], name: "index_memberships_on_team_id_and_user_id", unique: true
+    t.index ["team_id"], name: "index_memberships_on_team_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
-    t.bigint "category_id"
-    t.bigint "user_id"
-    t.string "title"
-    t.text "description"
+    t.bigint "category_id", null: false
+    t.bigint "user_id", null: false
+    t.string "title", null: false
+    t.text "content", null: false
     t.string "image"
     t.json "upload_file"
     t.datetime "created_at", null: false
@@ -59,8 +61,8 @@ ActiveRecord::Schema.define(version: 20180410053659) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string "name"
-    t.text "discription"
+    t.string "name", null: false
+    t.text "description"
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -80,11 +82,18 @@ ActiveRecord::Schema.define(version: 20180410053659) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name", default: "", null: false
+    t.string "name", null: false
     t.text "description"
     t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "categories", "teams"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "memberships", "teams"
+  add_foreign_key "memberships", "users"
+  add_foreign_key "posts", "categories"
+  add_foreign_key "posts", "users"
 end

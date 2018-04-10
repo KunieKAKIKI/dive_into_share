@@ -3,5 +3,5 @@ class Team < ApplicationRecord
   has_many :users, through: :memberships
   has_many :categories, dependent: :destroy
 
-  validates :name, presence: true, uniquness: true
+  validates :name, presence: true, uniqueness: true
 end
