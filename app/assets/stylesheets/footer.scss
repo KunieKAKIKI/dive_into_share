@@ -1,16 +1,18 @@
 /* 固定フッタスタイル
 -------------------------------------------------- */
+$footer-height:60px;
+
 html {
   position: relative;
   min-height: 100%;
 }
 body {
-  margin-bottom: 60px; /* フッタの下側マージンの高さ */
+  margin-bottom: $footer-height; /* フッタの下側マージンの高さ */
 }
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 60px; /* ここでフッタの固定高さを設定 */
-  line-height: 60px; /* ここでテキストを垂直に中央に配置 */
+  height: $footer-height; /* ここでフッタの固定高さを設定 */
+  line-height: $footer-height; /* ここでテキストを垂直に中央に配置 */
 }
