@@ -1,13 +1,13 @@
-.bg-secondary
-  ul.my-4
-    - @teams.each do |team|
-      li.my-3 = team.name
+= link_to 'チーム作成', '#', class: 'btn btn-secondary m-3'
+ul.mt-4
+  - @teams.each do |team|
+    li.mt-3 = team.name
 
-      ul.my-4
-        -team.categories.each do |category|
-          li.my-3 = category.name
+    ul.mt-4
+      -team.categories.each do |category|
+        li.mt-3 = category.name
 
-          ul.my-4
-            -category.posts.each do |post|
-              li.my-3
-                = link_to post.title, '#'
+        ul.mt-4
+          -category.posts.each do |post|
+            li.mt-3
+              = link_to post.title, '#'
