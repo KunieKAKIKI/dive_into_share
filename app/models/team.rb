@@ -5,4 +5,8 @@ class Team < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 30 }
   validates :description, length: { maximum: 280 }
+
+  scope :has_user_id, ->(user_id) {
+    joins(:users).where(users: { id: user_id })
+  }
 end
