@@ -1,0 +1,25 @@
+nav.navbar.navbar-expand-md.navbar-light.bg-color-header
+  = link_to 'DIVE INTO SHARE', root_path, class: "navbar-brand"
+  button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"]
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item.btn-sm.btn-primary
+        = link_to "投稿",'#' ,class: "nav-link text-center"
+    ul.navbar-nav
+      - if user_signed_in?
+        .my-auto
+          li.nav-item
+            span.badge.badge-pill.badge-info.mx-auto.my-auto
+              | 0
+
+        .my-auto
+          li.nav-item
+            i.fa.fa-bell[aria-hidden="true"]
+        li.nav-item
+          = link_to "マイページ", "#" ,class: "nav-link"
+        li.nav-item
+          = link_to "ログアウト", destroy_user_session_path, method: :delete ,class: "nav-link"
+      - else
+        li.nav-item
+          = link_to 'ログイン', new_user_session_path, class: "nav-link"
