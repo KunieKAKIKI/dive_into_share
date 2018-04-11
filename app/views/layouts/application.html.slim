@@ -9,16 +9,5 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     = render partial: "shared/header"
-
-    .container
-      - if user_signed_in?
-        .row
-          .col-5.bg-light
-            = render partial: "shared/side_menu"
-          .col-7
-            = yield
-
-      - else
-        = yield
-
+    = render partial: "shared/main"
     = render partial: "shared/footer"
