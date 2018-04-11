@@ -1,15 +1,15 @@
 = link_to 'チーム作成', '#', class: 'btn btn-secondary m-3'
 
-- if @teams.present?
+- if member_teams.present?
   ul.mt-4
-    - @teams.each do |team|
+    - member_teams.each do |team|
       li.mt-3 = team.name
 
       ul.mt-4
-        -team.categories.each do |category|
+        -team.categories.order(created_at: :desc).each do |category|
           li.mt-3 = category.name
 
           ul.mt-4
-            -category.posts.each do |post|
+            - category.posts.order(created_at: :desc).each do |post|
               li.mt-3
                 = link_to post.title, '#'
