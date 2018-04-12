@@ -1,0 +1,15 @@
+= render 'posts/errors', post: @post
+
+= form_with(model: [@team, @category, @post], local: true) do |form|
+
+  .form-group.mt-3
+    = form.hidden_field :category_id, value: @category.id
+    p
+      small チーム：
+      = @team.name
+      small.ml-3 カテゴリ：
+      = @category.name
+
+    = render 'posts/text_form', form: form
+
+  = form.submit "投稿する", class: "btn btn-primary"

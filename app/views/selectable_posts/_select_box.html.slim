@@ -1,0 +1,7 @@
+= form.label :team_id
+= select_tag :team_id, options_for_select(team_id_options, post.team.id),
+ id: 'select_team'
+
+= form.label :category_id, class: 'ml-3'
+= form.collection_select :category_id, post.team.categories,
+ :id, :name, {}, id: 'select_category'

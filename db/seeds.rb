@@ -30,6 +30,21 @@ categories_data.each do |category_data|
   )
 end
 
+secondteam_categories_data = [
+  { name: '請求書について', description: '請求書の管理についての話題はこちら' },
+  { name: '案件新規開拓', description: '案件の新規開拓に関するカテゴリー' },
+]
+secondteam = Team.find_by(name: 'SECOND TEAM')
+if secondteam.present?
+  secondteam_categories_data.each do |secondteam_category_data|
+    Category.create!(
+      name: secondteam_category_data[:name],
+      description: secondteam_category_data[:description],
+      team: secondteam
+    )
+  end
+end
+
 #user
 users_data = [
   { name: '青木一郎', description: '9月期生の青木です！よろしくお願いします！' },

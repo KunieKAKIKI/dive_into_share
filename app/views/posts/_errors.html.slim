@@ -1,0 +1,5 @@
+- if post.errors.any?
+  p.my-2 #{post.errors.size}件のエラーがあります。
+  .alert.alert-danger
+    - post.errors.full_messages.each do |message|
+      p.mb-0 = message
