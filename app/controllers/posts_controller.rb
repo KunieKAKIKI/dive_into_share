@@ -11,15 +11,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post= Post.new
-    respond_to do |format|
-      if @post.save
-        flash[:notice] = "投稿しました"
-        format.html { redirect_to team_category_post_path(@team,@category,@post) }
-      else
-        flash[:alert] = "投稿を作るのに失敗しました"
-        format.html { render :new}
-      end
+    @post = current_user.posts.build(post_params)
+    @post.category_id = @category.id
+    if @post.save
+      redirect_to team_category_post_path(@team,@category,@post), notice: "投稿を作成しました"
+    else
+      render :new
     end
   end
 
@@ -31,5 +28,9 @@ class PostsController < ApplicationController
 
   def set_category
     @category = @team.categories.find(params[:category_id])
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :content)
   end
 end
