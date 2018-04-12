@@ -1,0 +1,9 @@
+.row
+  - if user_signed_in?
+    .col-5.bg-light
+      = render "shared/side_menu"
+    .col-7
+      = yield
+  - else
+    .col
+      = yield

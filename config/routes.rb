@@ -4,4 +4,10 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'login', to: 'devise/sessions#new'
   end
+
+  resources :teams, only: %i() do
+    resources :categories, only: %i() do
+      resources :posts, only: %i(show)
+    end
+  end
 end

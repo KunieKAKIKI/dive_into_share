@@ -1,4 +1,12 @@
-h1
-  | Top#index
-p
-  | Find me in app/views/top/index.html.erb
+.text-center.mt-5
+  p.h2 DIVE INTO SHAREは
+  p.h2 あなたの思いを伝えるサービスです
+
+  = image_tag 'http://placehold.jp/300x300.png?text=image', class: 'mt-5 rounded-circle'
+  .card.my-5
+    p.mt-5 使い方の説明文を表示
+    br 説明文1 説明文2 ...
+    p.mt-5
+      = link_to '詳しい説明はこちら', '#'
+  p.mb-5
+    = link_to 'お問い合わせ', '#'
