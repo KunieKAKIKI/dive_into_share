@@ -8,6 +8,7 @@
       ul.mt-4
         -team.categories.order(created_at: :desc).each do |category|
           li.mt-3 = category.name
+          = link_to '投稿',new_team_category_post_path(team,category)
 
           ul.mt-4
             - category.posts.order(created_at: :desc).each do |post|

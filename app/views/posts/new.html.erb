@@ -1,0 +1,25 @@
+<% if @post.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@post.errors.count, "error") %>
+    Postは保存されていません:</h2>
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <%= form_with( local: true, html: {multipart: true}) do |form| %>
+
+  <div class="field form-group">
+    <%= form.label :"タイトル" , class: "center-block"%>
+    <%= form.text_field :title,id: :post_title ,size:"30",class: "form-control"%>
+  </div>
+  <div class="field form-group">
+    <%= form.label :"内容"  ,class: "center-block"%><br>
+    <%= form.text_area :coment, id: :post_coment ,size: "100x4",class: "form-control"%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "center-block"%>
+  </div>
+  <% end %>
