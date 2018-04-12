@@ -1,0 +1,19 @@
+- if @post.errors.any?
+  p #{@post.errors.size}件のエラーがあります。
+  ul
+    - @post.errors.full_messages.each do |message|
+      li
+        = message
+
+= form_with(model: [@team, @category, @post], local: true, html: {multipart: true}) do |form|
+  p チーム： #{@team.name}
+  p カテゴリー： #{@category.name}
+
+  .form-group
+    = form.label :title
+    = form.text_field :title, class: "form-control"
+  .form-group
+    = form.label :content
+    = form.text_area :content, class: "form-control"
+
+  = form.submit "投稿する", class: "btn btn-primary"

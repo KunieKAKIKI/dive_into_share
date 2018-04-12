@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_team
-  before_action :set_category
+  before_action :set_team, only: [:show, :new, :create]
+  before_action :set_category, only: [:show, :new, :create]
 
   def show
     @post = @category.posts.find(params[:id])
@@ -9,6 +9,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
   end
+
   def create
     @post= Post.new
     respond_to do |format|
@@ -16,11 +17,12 @@ class PostsController < ApplicationController
         flash[:notice] = "投稿しました"
         format.html { redirect_to team_category_post_path(@team,@category,@post) }
       else
-        flash[:danger] = "投稿を作るのに失敗しました"
+        flash[:alert] = "投稿を作るのに失敗しました"
         format.html { render :new}
       end
     end
   end
+
   private
 
   def set_team
