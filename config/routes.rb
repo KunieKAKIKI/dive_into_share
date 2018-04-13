@@ -10,4 +10,8 @@ Rails.application.routes.draw do
       resources :posts, only: %i(show)
     end
   end
+
+  resources :posts, only: %i[] do
+    resources :comments   #, only: %i[create destroy edit index]
+  end
 end
