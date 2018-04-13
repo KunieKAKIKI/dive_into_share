@@ -4,5 +4,5 @@
   .field
     = form.text_area :content , placeholder: 'コメント内容', class: 'field form-control'
   .actions
-    p.submit_btn
-      = form.submit '投稿'
+    p.submit_btn.mt-2.text-center
+      = form.submit 'コメントする', class: "btn btn-primary"
