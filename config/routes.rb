@@ -5,13 +5,13 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#new'
   end
 
-  resources :teams, only: %i() do
-    resources :categories, only: %i() do
-      resources :posts, only: %i(show new create)
+  resources :teams, only: %i[] do
+    resources :categories, only: %i[] do
+      resources :posts, only: %i[show new create]
     end
   end
 
   resources :posts do
-    resources :comments
+    resources :comments   #, only: %i[create destroy edit index]
   end
 end
