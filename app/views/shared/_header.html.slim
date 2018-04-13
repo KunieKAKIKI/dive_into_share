@@ -4,8 +4,8 @@ nav.navbar.navbar-expand-md.navbar-light.bg-color-header
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
-      li.nav-item.btn-sm.btn-primary
-        = link_to "投稿",'#' ,class: "nav-link text-center"
+      li.nav-item
+        = link_to "投稿", new_post_path, class: "btn btn-primary btn-sm"
     ul.navbar-nav
       - if user_signed_in?
         .my-auto

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_team, only: [:show, :new, :create]
-  before_action :set_category, only: [:show, :new, :create]
+  before_action :set_team, only: [:show]
+  before_action :set_category, only: [:show]
 
   def show
     @post = @category.posts.find(params[:id])
@@ -12,9 +12,9 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    @post.category_id = @category.id
+
     if @post.save
-      redirect_to team_category_post_path(@team,@category,@post), notice: "投稿を作成しました"
+      redirect_to team_category_post_path(@post.category.team, @post.category, @post), notice: "投稿を作成しました"
     else
       render :new
     end
@@ -31,6 +31,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :category_id)
   end
 end

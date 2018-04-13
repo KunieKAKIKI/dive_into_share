@@ -5,15 +5,52 @@
       li
         = message
 
-= form_with(model: [@team, @category, @post], local: true, html: {multipart: true}) do |form|
-  p チーム： #{@team.name}
-  p カテゴリー： #{@category.name}
+- _category_id = params[:_category_id]
+
+= form_with(model: @post, local: true,
+   url: posts_path(_category_id: _category_id)) do |f|
+
+  .form-group.mt-3
+    - if _category_id
+      /個別の投稿ボタン
+      - @post.category_id = _category_id
+      - team_id = Category.find(_category_id).team_id
+
+      p チーム：#{Team.find(team_id).name}  カテゴリ：#{Category.find(@post.category_id).name}
+
+      = f.hidden_field :team_id, value: team_id
+      = f.hidden_field :category_id, value: _category_id
+
+    - else
+      / 全体の投稿ボタン
+      / カテゴリidが入力済みの場合
+      - if @post.category_id.present?
+        - selected_category = Category.find(@post.category_id)
+        - selected_team = selected_category.team
+        - select_categories = selected_team.categories
+        - team_id_options = current_user.teams.order(:id).map { |c| [c.name, c.id, data: { path: select_team_path(c) }] }
+
+        = f.label :team_id
+        = select_tag :team_id, options_for_select(team_id_options, selected_team.id), id: 'select_team'
+
+        = f.label :category_id, class: 'ml-3'
+        = f.collection_select :category_id, select_categories, :id, :name, { prompt: true }, { id: 'select_category' }
+
+      / カテゴリidが未入力の場合
+      - else
+        - team_id_options = current_user.teams.order(:id).map { |c| [c.name, c.id, data: { path: select_team_path(c) }] }
+
+        = f.label :team_id
+        = f.select :team_id, team_id_options, { prompt: true }, id: 'select_team'
+
+        = f.label :category_id, class: 'ml-3'
+        = f.collection_select :category_id, [], :id, :name, { prompt: true }, { id: 'select_category' }
 
   .form-group
-    = form.label :title
-    = form.text_field :title, class: "form-control"
+    = f.label :title
+    = f.text_field :title, class: "form-control"
   .form-group
-    = form.label :content
-    = form.text_area :content, class: "form-control"
+    = f.label :content
+    = f.text_area :content, class: "form-control"
 
-  = form.submit "投稿する", class: "btn btn-primary"
+  = f.submit "投稿する", class: "btn btn-primary"
