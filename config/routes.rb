@@ -10,4 +10,8 @@ Rails.application.routes.draw do
       resources :posts, only: %i(show new create)
     end
   end
+
+  resources :posts do
+    resources :comments
+  end
 end
