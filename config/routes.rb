@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts, only: %i[] do
-    resources :comments   #, only: %i[create destroy edit index]
+  resources :posts, only: %i() do
+    resources :comments, only: %i(create destroy)
   end
 end

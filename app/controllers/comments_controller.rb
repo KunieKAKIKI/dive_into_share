@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
   include AjaxHelper
 
+  before_action :set_post, only:[:create, :destroy]
+
   def create
-    @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
     @comment.user_id = current_user.id
     respond_to do |format|
@@ -19,7 +20,6 @@ class CommentsController < ApplicationController
   def destroy
     @comment= Comment.find(params[:id])
     respond_to do |format|
-      @post = Post.find(params[:post_id])
       if @comment.destroy
         format.js { render :destroy }
       else
@@ -34,6 +34,10 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content)
+  end
+
+  def set_post
+    @post = Post.find(params[:post_id])
   end
 
   def short_post_path(post)

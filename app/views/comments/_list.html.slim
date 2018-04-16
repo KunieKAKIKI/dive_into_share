@@ -1,5 +1,5 @@
 .mt-3.ml-3
-  - @post.comments.order(created_at: :asc).each do |comment|
+  - comments.order(created_at: :asc).each do |comment|
     div
       small by #{comment.user.name}
       span.badge.badge-default 投稿日時
