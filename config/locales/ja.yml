@@ -9,6 +9,7 @@ ja:
         team_id: チーム
         category: カテゴリー
         category_id: カテゴリー
+        image: 画像
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"

@@ -38,6 +38,10 @@
         = f.collection_select :category_id, [], :id, :name, { prompt: true }, id: 'select_category'
 
   .form-group
+    = f.label :image
+    = f.file_field :image
+
+  .form-group
     = f.label :title
     = f.text_field :title, class: "form-control"
   .form-group
