@@ -29,7 +29,7 @@
         = select_tag :team_id, options_for_select(team_id_options, selected_team.id), id: 'select_team'
 
         = f.label :category_id, class: 'ml-3'
-        = f.collection_select :category_id, select_categories, :id, :name, id: 'select_category'
+        = f.collection_select :category_id, select_categories, :id, :name, {}, id: 'select_category'
 
       - else
         = f.label :team_id
