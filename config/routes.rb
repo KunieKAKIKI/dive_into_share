@@ -7,11 +7,10 @@ Rails.application.routes.draw do
 
   resources :teams, only: %i() do
     resources :categories, only: %i() do
-      resources :posts, only: %i(show)
     end
   end
 
-  resources :posts, only: %i() do
+  resources :posts, only: %i(show) do
     resources :comments, only: %i(create destroy)
   end
 end

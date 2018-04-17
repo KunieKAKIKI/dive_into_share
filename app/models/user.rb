@@ -11,4 +11,12 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 30 }
   validates :description, length: { maximum: 280 }
+
+  def can_comment?(post)
+    teams.find_by(id: post.category.team.id).present?
+  end
+
+  def can_delete_comment?(comment)
+    self == comment.user
+  end
 end

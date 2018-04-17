@@ -1,33 +1,15 @@
 class CommentsController < ApplicationController
-  include AjaxHelper
-
-  before_action :set_post, only:[:create, :destroy]
+  before_action :set_post, only: %i[create destroy]
 
   def create
     @comment = @post.comments.build(comment_params)
-    @comment.user_id = current_user.id
-    respond_to do |format|
-      if @comment.save
-        format.js { render :create }
-      else
-        flash[:alert] = "コメントを投稿できませんでした"
-        flash.keep(:alert)
-        format.js { render ajax_redirect_to(short_post_path(@post)) }
-      end
-    end
+    @comment.user = current_user
+    @comment.save if current_user.can_comment?(@post)
   end
 
   def destroy
-    @comment= Comment.find(params[:id])
-    respond_to do |format|
-      if @comment.destroy
-        format.js { render :destroy }
-      else
-        flash[:alert] = "コメントを削除できませんでした"
-        flash.keep(:alert)
-        format.js { render ajax_redirect_to(short_post_path(@post)) }
-      end
-    end
+    @comment = Comment.find(params[:id])
+    @comment.destroy! if current_user.can_delete_comment?(@comment)
   end
 
   private
@@ -38,9 +20,5 @@ class CommentsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:post_id])
-  end
-
-  def short_post_path(post)
-    team_category_post_path(post.category.team, post.category, post)
   end
 end
