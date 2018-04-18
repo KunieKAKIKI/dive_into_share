@@ -1,11 +1,11 @@
 module UsersHelper
-  def member_name(post, user)
-    if user == @post.user
-      content_tag :span, user.name, class: 'font-weight-bold'
+  def member_name_class(post, user)
+    if user == post.user
+      'font-weight-bold'
     elsif user == User.last
-      content_tag :span, user.name, class: 'text-danger'
+      'text-danger'
     else
-      content_tag :span, user.name
+      'font-weight-normal'
     end
   end
 end
