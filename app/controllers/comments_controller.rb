@@ -4,12 +4,21 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
-    @comment.save if current_user.can_comment?(@post)
+    if current_user.can_comment?(@post)
+      @comment.save
+    else
+      render status: :forbidden
+    end
   end
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy! if current_user.can_delete_comment?(@comment)
+
+    if current_user.can_delete_comment?(@comment)
+      @comment.destroy!
+    else
+      render status: :forbidden
+    end
   end
 
   private

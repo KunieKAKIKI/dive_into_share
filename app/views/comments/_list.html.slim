@@ -5,7 +5,7 @@
       span.badge.badge-default 投稿日時
       small= l comment.created_at
 
-      - if comment.user == current_user
+      - if current_user.can_delete_comment?(comment)
          = link_to post_comment_path(post, comment), method: :delete,
           data: {confirm: "削除してもよろしいですか?"},remote: true, class: 'ml-3' do
           i.fa.fa-trash.text-primary
