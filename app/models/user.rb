@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :description, length: { maximum: 280 }
 
   def can_comment?(post)
-    teams.find_by(id: post.category.team.id).present?
+    teams.exists?(id: post.category.team.id)
   end
 
   def can_delete_comment?(comment)

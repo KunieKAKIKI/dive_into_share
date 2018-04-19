@@ -16,4 +16,4 @@
     #error_explanation
       .alert.alert-danger
         - @comment.errors.full_messages.each do |message|
-          = message
+          p.mb-0 = message
