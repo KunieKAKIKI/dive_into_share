@@ -1,0 +1,6 @@
+= form_with(model: [post, comment]) do |form|
+  .field
+    = form.text_area :content , placeholder: 'コメント内容', class: 'field form-control', id: 'comment_text_area'
+  .actions
+    p.submit_btn.mt-2.text-center
+      = form.submit 'コメントする', class: "btn btn-primary"
