@@ -16,7 +16,7 @@ $(window).on('load', function(){
     })
     // Ajaxリクエストが失敗した場合
     .fail( (data) => {
-      console.log('failed');
+      console.log('select_category ajax request failed');
     });
   });
 });

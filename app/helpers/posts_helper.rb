@@ -2,7 +2,7 @@ module PostsHelper
   def team_id_options
     current_user.teams
                 .order(:id)
-                .map { |c| [c.name, c.id, data: { path: select_team_path(c) }] }
+                .map { |t| [t.name, t.id, data: { path: select_team_path(t) }] }
   end
 
   def render_select_box(post:, form:)
