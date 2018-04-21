@@ -3,11 +3,13 @@
 - if member_teams.present?
   ul.mt-4
     - member_teams.each do |team|
-      li.mt-3 = team.name
+      li.mt-3
+        = link_to team.name,team_path(team)
 
       ul.mt-4
         -team.categories.order(created_at: :desc).each do |category|
-          li.mt-3 = category.name
+          li.mt-3
+            = link_to category.name, team_category_path(team,category)
 
           ul.mt-4
             - category.posts.order(created_at: :desc).each do |post|

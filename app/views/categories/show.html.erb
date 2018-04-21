@@ -1,0 +1,37 @@
+<% if @category.team.users.exists?(current_user.id) %>
+<p>
+  <strong>カテゴリ名:</strong>
+  <%= @category.name %>
+</p>
+
+<p>
+  <strong>カテゴリの説明:</strong>
+  <%= @category.description if @category.description.present? %>
+</p>
+
+<p>
+  <strong>チーム画像:</strong>
+  <%= image_tag @category.image if @category.image.present? %>
+</p>
+
+<p>
+  <strong>カテゴリ更新日:</strong>
+  <%= l @category.updated_at %>
+</p>
+<p>
+  <strong>カテゴリ作成日:</strong>
+  <%= l @category.created_at %>
+</p>
+<% end %>
+<br>
+<% @category.team.users.each do |user| %>
+<div class="mb-2">
+  <span class= "mr-3" ><%= user.name %></span>
+  <span class= "mr-1" ><%= image_tag 'https://picsum.photos/30/30?image=' + rand(100).to_s ,class: "rounded-circle" %></span>
+</div>
+ <% end %>
+ <br>
+<%= link_to '編集する', edit_team_category_path(@category.team_id,@category) ,class:"btn btn-sm btn-primary mr-2"%> |
+<%= link_to '招待', "#" ,class:"btn btn-sm btn-primary mr-2" %> |
+<%= link_to '投稿', "#" ,class:"btn btn-sm btn-primary mr-2" %> |
+<%= link_to 'カテゴリ削除', team_category_path(@category.team_id,@category),method: :delete,data: { confirm: 'チームを削除しても良いですか？' } ,class:"btn btn-sm btn-danger" %>
