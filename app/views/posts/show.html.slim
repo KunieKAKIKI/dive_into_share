@@ -52,7 +52,7 @@
   .tab-pane.fade#pills-profile role="tabpanel" aria-labelledby="pills-profile-tab"
     p.mt-3 この投稿への思い
     .card.mt-2.p-3
-      - if @post.note
+      - if @post.note.present?
         = simple_format @post.note
       - else
         p.text-muted.font-italic この投稿への思いはまだ登録されていません
