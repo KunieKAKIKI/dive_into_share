@@ -11,8 +11,15 @@ ja:
         title: "タイトル"
         name: "名前"
         email: "メールアドレス"
-        content: "内容"
+        description: "自己紹介"
+        image: "画像"
         current_password: "現在のパスワード"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
+      post:
+        title: タイトル
+        content: 内容
+        team_id: チーム
+        category: カテゴリー
+        category_id: カテゴリー
