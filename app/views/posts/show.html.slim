@@ -20,8 +20,12 @@ hr
       | by #{@post.user.name}
     span.badge.badge-default 投稿日時
     small= l @post.created_at
-    i.fa.fa-edit.text-primary.ml-2
-    i.fa.fa-trash.text-primary.ml-2
+
+    - if current_user.posts.exists?(id: @post.id)
+      = link_to edit_team_category_post_path(@post.team, @post.category, @post) do
+        i.fa.fa-edit.text-primary.ml-2
+      = link_to team_category_post_path(@post.team, @post.category, @post), method: :delete, data: { confirm: '投稿を削除しても良いですか？' } do
+        i.fa.fa-trash.text-primary.ml-2
 
   .card-body
     .card-text.mt-3
