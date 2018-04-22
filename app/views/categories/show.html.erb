@@ -26,8 +26,10 @@
 <br>
 <% @category.team.users.each do |user| %>
 <div class="mb-2">
-  <span class= "mr-3" ><%= user.name %></span>
-  <span class= "mr-1" ><%= image_tag 'https://picsum.photos/30/30?image=' + rand(100).to_s ,class: "rounded-circle" %></span>
+  <%= link_to user_path(user) do %>
+    <span class= "mr-3" ><%= user.name %></span>
+    <span class= "mr-1" ><%= image_tag 'https://picsum.photos/30/30?image=' + rand(100).to_s ,class: "rounded-circle" %></span>
+  <% end %>
 </div>
  <% end %>
  <br>

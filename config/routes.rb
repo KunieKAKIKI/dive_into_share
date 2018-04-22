@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   end
 
   resources :selectable_posts, only: %i(new create)
+
+  resources :users, only: %i(show)
 end

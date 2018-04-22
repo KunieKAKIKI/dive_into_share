@@ -5,10 +5,12 @@ p.mb-0
 
 | 参加者：
 - @post.category.team.users.each do |user|
-  span.mr-3
-    = image_tag 'https://picsum.photos/30/30?image=' + rand(100).to_s, class: 'rounded-circle mr-1'
-    span class=member_name_class(@post, user)
-      = user.name
+
+  = link_to user_path(user) do
+    span.mr-3
+      = image_tag 'https://picsum.photos/30/30?image=' + rand(100).to_s, class: 'rounded-circle mr-1'
+      span class=member_name_class(@post, user)
+        = user.name
 
 p カテゴリ名：#{@post.category.name}
 hr

@@ -1,0 +1,20 @@
+.text-center.mt-3
+  - if @user.image.present?
+    = image_tag @user.image, class: "rounded-circle my-3",size: "200x200"
+  - else
+    = image_tag 'http://placehold.jp/200x200.png?text=image', class: "rounded-circle my-3"
+
+  .card
+    p.h2.mt-3 = @user.name
+    p.mt-3 = @user.description
+    p.mt-3 メールアドレス：#{@user.email}
+
+  p.mt-5.font-weight-bold #{@user.name}さんが所属しているチーム
+  - @user.teams.each do |team|
+    p.small
+      - if current_user.teams.exists?(id: team.id)
+        = link_to team.name, team_path(team)
+      - else
+        = team.name
+
+  = link_to '前の画面に戻る', :back, class: 'btn btn-primary mt-5'

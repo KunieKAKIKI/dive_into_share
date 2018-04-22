@@ -21,4 +21,8 @@ class User < ApplicationRecord
   def can_delete_comment?(comment)
     self == comment.user
   end
+
+  def can_see?(other_user)
+    teams.where(id: other_user.teams.ids).present?
+  end
 end
