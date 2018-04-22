@@ -1,38 +1,58 @@
-p.mb-0
-  | チーム名：
-  = link_to @post.category.team.name, team_path(@post.category.team)
+<ul class="nav nav-pills mb-3 mt-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">投稿の内容</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">思いを見る</a>
+  </li>
+</ul>
+
+.tab-content#pills-tabContent
+  .tab-pane.fade.show.active#pills-home role="tabpanel" aria-labelledby="pills-home-tab"
+
+    p.mb-0.mt-4
+      | チーム名：
+      = link_to @post.category.team.name, team_path(@post.category.team)
 
 
-| 参加者：
-- @post.category.team.users.each do |user|
+    | 参加者：
+    - @post.category.team.users.each do |user|
 
-  = link_to user_path(user) do
-    span.mr-3
-      = image_tag 'https://picsum.photos/30/30?image=' + rand(100).to_s, class: 'rounded-circle mr-1'
-      span class=member_name_class(@post, user)
-        = user.name
+      = link_to user_path(user) do
+        span.mr-3
+          = image_tag 'https://picsum.photos/30/30?image=' + rand(100).to_s, class: 'rounded-circle mr-1'
+          span class=member_name_class(@post, user)
+            = user.name
 
-p カテゴリ名：#{@post.category.name}
-hr
+    p カテゴリ名：#{@post.category.name}
+    hr
 
-.card.mt-3
-  .card-header
-    = @post.title
-    small.ml-2
-      | by #{@post.user.name}
-    span.badge.badge-default 投稿日時
-    small= l @post.created_at
+    .card.mt-3
+      .card-header
+        = @post.title
+        small.ml-2
+          | by #{@post.user.name}
+        span.badge.badge-default 投稿日時
+        small= l @post.created_at
 
-    - if current_user.posts.exists?(id: @post.id)
-      = link_to edit_team_category_post_path(@post.team, @post.category, @post) do
-        i.fa.fa-edit.text-primary.ml-2
-      = link_to team_category_post_path(@post.team, @post.category, @post), method: :delete, data: { confirm: '投稿を削除しても良いですか？' } do
-        i.fa.fa-trash.text-primary.ml-2
+        - if current_user.posts.exists?(id: @post.id)
+          = link_to edit_team_category_post_path(@post.team, @post.category, @post) do
+            i.fa.fa-edit.text-primary.ml-2
+          = link_to team_category_post_path(@post.team, @post.category, @post), method: :delete, data: { confirm: '投稿を削除しても良いですか？' } do
+            i.fa.fa-trash.text-primary.ml-2
 
-  .card-body
-    .card-text.mt-3
-      = simple_format @post.content
+      .card-body
+        .card-text.mt-3
+          = simple_format @post.content
 
-#comments_area
-  = render 'comments/list', post: @post
-= render 'comments/form', post: @post, comment: @comment
+    #comments_area
+      = render 'comments/list', post: @post
+    = render 'comments/form', post: @post, comment: @comment
+
+  .tab-pane.fade#pills-profile role="tabpanel" aria-labelledby="pills-profile-tab"
+    p.mt-3 この投稿への思い
+    .card.mt-2.p-3
+      - if @post.note
+        = simple_format @post.note
+      - else
+        p.text-muted.font-italic この投稿への思いはまだ登録されていません

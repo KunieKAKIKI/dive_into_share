@@ -2,12 +2,18 @@
 
   .form-group.mt-3
     = form.hidden_field :category_id, value: category.id
-    p
-      small チーム：
-      = team.name
-      small.ml-3 カテゴリ：
-      = category.name
 
-    = render 'posts/text_form', form: form
+    .tab-content#pills-tabContent
+      .tab-pane.fade.show.active#pills-home role="tabpanel" aria-labelledby="pills-home-tab"
+        p
+          small チーム：
+          = team.name
+          small.ml-3 カテゴリ：
+          = category.name
+
+        = render 'posts/text_form', form: form
+
+      .tab-pane.fade#pills-profile role="tabpanel" aria-labelledby="pills-profile-tab"
+        = render 'posts/note_form', form: form
 
   = form.submit "送信する", class: "btn btn-primary"

@@ -16,6 +16,6 @@ class SelectablePostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :category_id)
+    params.require(:post).permit(:title, :content, :category_id, :note)
   end
 end
