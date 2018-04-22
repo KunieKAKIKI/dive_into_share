@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#new'
   end
 
-  resources :teams, only: %i() do
+  resources :teams do
     get 'select', on: :member
-    resources :categories, only: %i() do
+    resources :categories do
       resources :posts, only: %i(new create)
     end
   end

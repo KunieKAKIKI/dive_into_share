@@ -1,0 +1,26 @@
+<%= form_with(model: [category.team, category], local:true) do |form| %>
+  <% if category.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+      <% category.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label :"名前" %>
+    <%= form.text_field :name,id: :category_name ,class: "form-control"%>
+  </div>
+  <div class="field form-group">
+    <%= form.label :"カテゴリの説明" %><br>
+    <%= form.text_area :description, id: :category_description ,size: "40x7",class: "form-control"%>
+  </div>
+  <div class="field form-group">
+    <%= form.label :"画像" %>
+    <%#= form.file_field :image,id: :category_image ,class: "form-control"%>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  <% end %>
