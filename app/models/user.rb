@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :description, length: { maximum: 280 }
 
   mount_uploader :image, ImageUploader
-
+  
   def can_comment?(post)
     teams.exists?(id: post.category.team.id)
   end
