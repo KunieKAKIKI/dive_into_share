@@ -28,7 +28,7 @@
 <div class="mb-2">
   <%= link_to user_path(user) do %>
     <span class= "mr-3" ><%= user.name %></span>
-    <span class= "mr-1" ><%= image_tag 'https://picsum.photos/30/30?image=' + rand(100).to_s ,class: "rounded-circle" %></span>
+    <span class= "mr-1" ><%= image_tag user.image,:size => '30x30',class: "rounded-circle" %></span>
   <% end %>
 </div>
  <% end %>
