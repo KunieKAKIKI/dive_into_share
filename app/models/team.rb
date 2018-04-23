@@ -5,4 +5,6 @@ class Team < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true, length: { maximum: 30 }
   validates :description, length: { maximum: 280 }
+
+  mount_uploader :image, ImageUploader
 end
