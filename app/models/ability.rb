@@ -10,9 +10,9 @@ class Ability
     if user.admin?
       can :access, :rails_admin
       can :manage, :all
-    elsif user.team_edit_rights()  #ユーザがチームの編集権を持つ場合
-      can :manage, Team do |team| #編集できるチームを特定したい
-        team == user.team
+    #elsif user.team_edit_rights()  #ユーザがチームの編集権を持つ場合
+    #  can :manage, Team do |team| #編集できるチームを特定したい
+    #    team == user.team
     else
       cannot :destroy, Post
     end
