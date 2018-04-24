@@ -1,22 +1,29 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user, team)
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new # guest user (not logged in)
-    can :manage, :all
 
     if user.admin?
       can :access, :rails_admin
       can :manage, :all
+    end
+
+    can :read, User
+
+    if user.can_edit_team?(team)
+      can :manage, [Category, Comment, Membership, Post, TeamEditRight, Team]
+    else
+      can :read, Category
+      can :manage, [Comment, Post, TeamEditRight]
+      can %i[read create], Team
+    end
+
     #elsif user.team_edit_rights()  #ユーザがチームの編集権を持つ場合
     #  can :manage, Team do |team| #編集できるチームを特定したい
     #    team == user.team
-    else
-      cannot :destroy, Post
-    end
-
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.

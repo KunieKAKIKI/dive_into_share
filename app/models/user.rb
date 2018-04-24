@@ -27,4 +27,8 @@ class User < ApplicationRecord
   def can_see?(other_user)
     teams.where(id: other_user.teams.ids).present?
   end
+
+  def can_edit_team?(team)
+    self == team.author || team.team_edit_rights.exists?(user_id: id)
+  end
 end
