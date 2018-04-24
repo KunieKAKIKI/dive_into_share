@@ -8,7 +8,6 @@ class User < ApplicationRecord
   has_many :teams, through: :memberships
   has_many :posts
   has_many :comments
-  
   has_many :team_edit_rights, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 30 }
