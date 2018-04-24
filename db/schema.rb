@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180424023928) do
+=======
+ActiveRecord::Schema.define(version: 20180424033110) do
+>>>>>>> f3b5467... Teamモデルとseedデータ修正
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,7 +81,9 @@ ActiveRecord::Schema.define(version: 20180424023928) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["name"], name: "index_teams_on_name", unique: true
+    t.index ["user_id"], name: "index_teams_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -110,4 +116,5 @@ ActiveRecord::Schema.define(version: 20180424023928) do
   add_foreign_key "posts", "users"
   add_foreign_key "team_edit_rights", "teams"
   add_foreign_key "team_edit_rights", "users"
+  add_foreign_key "teams", "users"
 end

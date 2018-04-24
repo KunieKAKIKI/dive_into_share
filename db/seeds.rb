@@ -1,3 +1,20 @@
+#user
+users_data = [
+  { name: '青木一郎', description: '9月期生の青木です！よろしくお願いします！' },
+  { name: '池田次郎', description: '開発チームの池田です。最近ダイエットしてます。' },
+  { name: '上田貞夫', description: '開発の上田です。週末は料理クラブで活動してますー。' },
+  { name: '江田志郎', description: 'メンター江田です！最近は社内にいないのですが、見かけたらよろしく！' },
+  { name: '岡見吾朗', description: '岡見です。営業チームと兼任してます。' },
+]
+users_data.each_with_index do |user_data, n|
+  User.create!(
+    name: user_data[:name],
+    email: n.to_s + '@example.com',
+    password: 'password',
+    description: user_data[:description],
+  )
+end
+
 #team
 teams_data = [
   { name: 'DEMO DAY運営チーム', description: 'DEMO DAYを運営するメンバーのチームです。' },
@@ -6,10 +23,12 @@ teams_data = [
   { name: '2017年9月期卒業発表会', description: '2017年9月期の卒業発表会に関するチームです。' },
   { name: 'DEMO DAY mini', description: 'DEMO DAY mini運営のチームです。' },
 ]
+user1 = User.first
 teams_data.each do |team_data|
   Team.create!(
     name: team_data[:name],
     description: team_data[:description],
+    author: user1,
   )
 end
 
@@ -43,23 +62,6 @@ if secondteam.present?
       team: secondteam
     )
   end
-end
-
-#user
-users_data = [
-  { name: '青木一郎', description: '9月期生の青木です！よろしくお願いします！' },
-  { name: '池田次郎', description: '開発チームの池田です。最近ダイエットしてます。' },
-  { name: '上田貞夫', description: '開発の上田です。週末は料理クラブで活動してますー。' },
-  { name: '江田志郎', description: 'メンター江田です！最近は社内にいないのですが、見かけたらよろしく！' },
-  { name: '岡見吾朗', description: '岡見です。営業チームと兼任してます。' },
-]
-users_data.each_with_index do |user_data, n|
-  User.create!(
-    name: user_data[:name],
-    email: n.to_s + '@example.com',
-    password: 'password',
-    description: user_data[:description],
-  )
 end
 
 #teams_users
