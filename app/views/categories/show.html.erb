@@ -33,7 +33,9 @@
 </div>
  <% end %>
  <br>
-<%= link_to '編集する', edit_team_category_path(@category.team, @category) ,class:"btn btn-sm btn-primary mr-2"%> |
+<% if loyalty(@category.team, :categories).edit? %>
+  <%= link_to '編集する', edit_team_category_path(@category.team, @category) ,class:"btn btn-sm btn-primary mr-2"%> |
+<% end %>
 <%
 =begin
 %>
@@ -42,4 +44,6 @@
 =end
 %>
 <%= link_to '投稿', new_team_category_post_path(@category.team, @category) ,class:"btn btn-sm btn-primary mr-2" %> |
-<%= link_to 'カテゴリ削除', team_category_path(@category.team_id,@category),method: :delete,data: { confirm: 'チームを削除しても良いですか？' } ,class:"btn btn-sm btn-danger" %>
+<% if loyalty(@category.team, :categories).destroy? %>
+  <%= link_to 'カテゴリ削除', team_category_path(@category.team_id,@category),method: :delete,data: { confirm: 'カテゴリを削除しても良いですか？' } ,class:"btn btn-sm btn-danger" %>
+<% end %>
