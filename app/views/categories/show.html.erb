@@ -24,6 +24,10 @@
 </p>
 <% end %>
 <br>
+
+<%
+=begin
+%>
 <% @category.team.users.each do |user| %>
 <div class="mb-2">
   <%= link_to user_path(user) do %>
@@ -33,6 +37,10 @@
 </div>
  <% end %>
  <br>
+<%
+=end
+%>
+
 <% if loyalty(@category.team, :categories).edit? %>
   <%= link_to '編集する', edit_team_category_path(@category.team, @category) ,class:"btn btn-sm btn-primary mr-2"%> |
 <% end %>

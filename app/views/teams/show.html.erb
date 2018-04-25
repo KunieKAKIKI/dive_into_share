@@ -24,14 +24,34 @@
 </p>
 <% end %>
 <br>
+
 <% @team.users.each do |user| %>
-<div class="mb-2">
-  <%= link_to user_path(user) do %>
-    <span class= "mr-3" ><%= user.name %></span>
-    <span class= "mr-1" ><%= image_tag user.image,:size => '30x30',class: "rounded-circle" %></span>
-  <% end %>
-</div>
- <% end %>
+  <div class="mb-2">
+    <%= link_to user_path(user) do %>
+      <span class= "mr-3" ><%= user.name %></span>
+      <span class= "mr-1" ><%= image_tag user.image,:size => '30x30',class: "rounded-circle" %></span>
+    <% end %>
+
+    <%# あとで条件を整理して、権限の方に設定できるものは設定すべし %>
+    <% if user == @team.author %>
+      <span class = 'ml-3 font-weight-bold'>チーム作成者</span>
+    <% elsif @team.team_edit_rights.exists?(user_id: user.id) %>
+      <% team_edit_right = @team.team_edit_rights.find_by(user: user) %>
+      <span class= 'ml-3'>チーム編集権限あり</span>
+
+      <%if current_user == @team.author%>
+        <%= link_to 'チーム編集権限を削除', team_user_team_edit_right_path(@team, user, team_edit_right),
+                                            method: :delete,
+                                            class: 'btn btn-sm btn-outline-primary ml-3' %>
+      <% end %>
+    <% elsif current_user == @team.author %>
+      <%= link_to 'チーム編集権限を付与', team_user_team_edit_rights_path(@team, user),
+                                            method: :post,
+                                            class: 'btn btn-sm btn-outline-primary ml-3' %>
+    <% end %>
+
+  </div>
+<% end %>
  <br>
 <% if loyalty(@team, :teams).edit? %>
   <%= link_to '編集する', edit_team_path(@team) ,class:"btn btn-sm btn-primary mr-2"%> |

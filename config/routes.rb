@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'team_edit_rights/create'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'top#index'
   devise_for :users
@@ -8,6 +10,9 @@ Rails.application.routes.draw do
   end
 
   resources :teams do
+    resources :users do %i(index)
+      resources :team_edit_rights, only: %i(create destroy)
+    end
     get 'select', on: :member
     resources :users, only: %i(index) do
       resources :memberships, only: %i(create destroy)
