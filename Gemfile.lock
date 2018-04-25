@@ -42,6 +42,8 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
     ast (2.4.0)
+    banken (1.0.2)
+      activesupport (>= 3.0.0)
     bcrypt (3.1.11)
     better_errors (2.4.0)
       coderay (>= 1.0.0)
@@ -52,7 +54,6 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (10.0.2)
-    cancancan (2.2.0)
     capybara (2.18.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -286,10 +287,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  banken
   better_errors
   binding_of_caller
   byebug
-  cancancan (~> 2.0)
   capybara (~> 2.13)
   carrierwave
   coffee-rails (~> 4.2)

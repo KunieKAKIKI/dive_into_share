@@ -11,7 +11,7 @@ nav.navbar.navbar-expand-md.navbar-light.bg-color-header
       - if user_signed_in?
         .my-auto
           li.nav-item.mr-4
-            -if can? :access, :rails_admin
+            -if current_user.admin?
               = link_to '管理画面', rails_admin_path, class: 'btn btn-primary btn-sm'
         .my-auto
           li.nav-item

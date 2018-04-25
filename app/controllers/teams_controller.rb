@@ -20,14 +20,17 @@ class TeamsController < ApplicationController
   end
 
   def edit
+    authorize! @team
   end
 
   def destroy
+    authorize! @team
     @team.destroy
     redirect_to root_path
   end
 
   def update
+    authorize! @team
     if @team.update(team_params)
       redirect_to @team, notice: '情報を更新しました'
     else
