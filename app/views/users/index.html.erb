@@ -1,7 +1,15 @@
-<% @users.each do |u| %>
+<h3>チーム：<%= @team.name %></h3>
 
-  <span class= "mx-3" ><%= u.name %></span>
-  <span class= "mr-1" ><%= image_tag u.image,size: "30x30",class: "rounded-circle" %></span>
-  <%= link_to "登録",team_user_memberships_path(team_id: @team.id,user_id: u.id) ,method: :post %>
-  <%= link_to "解除",team_user_membership_path(team_id: @team.id,user_id: u.id,id: 1), method: :delete  %>
+<% @users.each do |u| %>
+  <div class = "my-3">
+    <span class= "mr-1" ><%= image_tag u.image,size: "30x30",class: "rounded-circle" %></span>
+    <span class= "mx-3" ><%= u.name %></span>
+    <% membership = u.memberships.find_by(team_id: @team.id) %>
+    <% if membership.present? %>
+      <%= link_to "解除",team_user_membership_path(team_id: @team.id, user_id: u.id, id: membership.id), method: :delete, class: "btn btn-sm btn-danger"  %>
+    <% else %>
+      <%= link_to "登録",team_user_memberships_path(team_id: @team.id, user_id: u.id), method: :post, class: "btn btn-sm btn-primary" %>
+    <% end %>
+  </div>
 <% end %>
+<%= link_to "チーム詳細へ",team_path(@team) %>
