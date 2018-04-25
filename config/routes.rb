@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   resources :teams do
     get 'select', on: :member
-    resources :users, only: %i(index)
+    resources :users, only: %i(index) do
+      resources :memberships, only: %i(create destroy)
+    end
     resources :categories do
       resources :posts, only: %i(new create edit update destroy)
     end
@@ -20,6 +22,6 @@ Rails.application.routes.draw do
   end
 
   resources :selectable_posts, only: %i(new create)
-
   resources :users, only: %i(show)
+
 end
