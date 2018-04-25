@@ -8,15 +8,26 @@ $(window).on('load', function(){
       dataType: "json",
     })
     // Ajaxリクエストが成功した場合
-    .done( (data) => {
+    .done(function (data) {
       $("#select_category").children().remove();
-      for(var i in data) {
-        $("#select_category").append("<option value=" +data[i].id + ">" + data[i].name +  "</option>");
+      for (var i in data) {
+        $("#select_category").append("<option value=" + data[i].id + ">" + data[i].name + "</option>");
       }
     })
     // Ajaxリクエストが失敗した場合
-    .fail( (data) => {
+    .fail(function (data) {
       console.log('select_category ajax request failed');
     });
+    // // Ajaxリクエストが成功した場合
+    // .done( (data) => {
+    //   $("#select_category").children().remove();
+    //   for(var i in data) {
+    //     $("#select_category").append("<option value=" +data[i].id + ">" + data[i].name +  "</option>");
+    //   }
+    // })
+    // // Ajaxリクエストが失敗した場合
+    // .fail( (data) => {
+    //   console.log('select_category ajax request failed');
+    // });
   });
 });
