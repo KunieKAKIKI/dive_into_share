@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :teams do
     get 'select', on: :member
+    resources :users, only: %i(index)
     resources :categories do
       resources :posts, only: %i(new create edit update destroy)
     end
