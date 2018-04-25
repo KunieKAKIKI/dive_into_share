@@ -3,11 +3,13 @@ class CategoriesController < ApplicationController
 
   def new
     @team = Team.find(params[:team_id])
+    authorize! @team
     @category = @team.categories.build
   end
 
   def create
     @team = Team.find(params[:team_id])
+    authorize! @team
     @category = @team.categories.build(category_params)
       if @category.save
         redirect_to team_category_path(@category.team.id,@category)
@@ -20,14 +22,17 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+    authorize! @category.team
   end
 
   def destroy
+    authorize! @category.team
     @category.destroy
     redirect_to root_path
   end
 
   def update
+    authorize! @category.team
     if @category.update(category_params)
       redirect_to team_category_path(@category.team, @category), notice: '情報を更新しました'
     else
