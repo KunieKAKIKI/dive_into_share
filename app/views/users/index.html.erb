@@ -1,4 +1,4 @@
 <% @users_not_in_team.each do |u| %>
-<p><%= u.name %></p>
-<p><%= image_tag u.image %></p>
+  <span class= "mx-3" ><%= u.name %></span>
+  <span class= "mr-1" ><%= image_tag u.image,size: "30x30",class: "rounded-circle" %></span>
 <% end %>

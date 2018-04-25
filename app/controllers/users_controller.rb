@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
-
   def index
-#binding.pry
     @teams = Team.find(params[:team_id])
     @users = @teams.users
     @users_not_in_team = User.where.not(id: @users)
