@@ -1,12 +1,29 @@
-.text-center.mt-5
-  p.h2 DIVE INTO SHAREは
-  p.h2 あなたの思いを伝えるサービスです
+.text-center.my-5
+  h1.my-5 DIVE INTO SHARE
+  h3.my-5 広く深く情報を共有できるツール
+  /h4.my-5 広く深く情報を共有するためのツール
+  /h5.my-5 DIVE INTO SHARE は 広く深く情報を共有するためのサービスです
 
-  = image_tag 'http://placehold.jp/300x300.png?text=image', class: 'mt-5 rounded-circle'
-  .card.my-5
-    p.mt-5 使い方の説明文を表示
-    br 説明文1 説明文2 ...
-    p.mt-5
-      = link_to '詳しい説明はこちら', '#'
-  p.mb-5
-    = link_to 'お問い合わせ', '#'
+.card.m-3
+  .card-header 広く -一覧性-
+  .card-body
+    .h4.card-title サイドバー
+    .card-text
+      p.mb-1 参加中の チーム カテゴリー 投稿 の一覧を表示
+      ul.pl-0.mb-0.style-none
+        li
+          i.fas.fa-hand-point-right.mx-1
+          |チーム、カテゴリー、投稿を選択すると詳細を見ることができます
+        li
+          i.fas.fa-hand-point-right.mx-1
+          |各カテゴリーへ直接投稿することができます
+.card.m-3
+  .card-header 深く -情報を通しての連携-
+  .card-body
+    .h4.card-title 「思い」
+    .card-text 「なぜこの投稿をするのか？」投稿者の思いやその投稿の背景を共有できます
+
+p.mt-5.text-center
+    = link_to '詳しい使い方はこちら', '#'
+p.mb-5.text-right
+  = link_to 'お問い合わせ', '#'
