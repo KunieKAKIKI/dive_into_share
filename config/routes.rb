@@ -7,8 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :teams, only: %i() do
-    get 'select', on: :member
-    resources :categories, only: %i() do
+    resources :categories, only: %i(index) do
       resources :posts, only: %i(new create), module: :categories
     end
   end
