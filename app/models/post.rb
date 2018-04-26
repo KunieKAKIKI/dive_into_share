@@ -10,4 +10,8 @@ class Post < ApplicationRecord
   scope :accessible, ->(user) do
     Post.joins(category: :team).where(teams: { id: user.teams.ids })
   end
+
+  def invalid_category?
+    !user.teams.exists?(id: category.team.id)
+  end
 end
