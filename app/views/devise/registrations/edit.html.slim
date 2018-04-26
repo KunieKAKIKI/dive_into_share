@@ -4,7 +4,7 @@
       - resource.errors.full_messages.each do |message|
         p.mb-0 = message
 .text-center
-  - image_url = current_user.image.presence || 'http://placehold.jp/200x200.png?text=image'
+  - image_url = current_user.image
   = image_tag image_url, class: "rounded-circle my-3", size: "200x200"
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   .form-group

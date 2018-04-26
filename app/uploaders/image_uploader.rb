@@ -44,4 +44,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  def default_url
+    'http://placehold.jp/200x200.png?text=image'
+  end
 end
