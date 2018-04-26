@@ -1,0 +1,19 @@
+= form_with(model: team, local: true) do |form|
+  - if team.errors.any?
+    #error_explanation
+      ul
+        - team.errors.full_messages.each do |message|
+          li
+            = message
+  .field.form-group
+    = form.label :"名前"
+    = form.text_field :name,id: :team_name ,class: "form-control"
+  .field.form-group
+    = form.label :"チームの説明"
+    br
+    = form.text_area :description, id: :team_description ,size: "40x7",class: "form-control"
+  .field.form-group
+    = form.label :"画像"
+    = form.file_field :image,id: :team_image ,class: "form-control"
+  .actions
+    = form.submit

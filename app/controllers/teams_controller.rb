@@ -1,18 +1,17 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: %i[edit show destroy update]
+  before_action :set_team, only: %i[show edit update destroy]
 
   def new
-    @team = Team.new
+    @team = current_user.teams.build
   end
 
   def create
-    @team = Team.new(team_params)
-    @team.users << current_user
-      if @team.save
-        redirect_to @team, notice: 'チームを作るのに成功しました'
-      else
-        render :new, danger: 'チームを作るのに失敗しました'
-      end
+    @team = current_user.teams.build(team_params)
+    if @team.save
+      redirect_to team_path(@team), notice: 'チームを作るのに成功しました'
+    else
+      render :new
+    end
   end
 
   def show
@@ -21,19 +20,18 @@ class TeamsController < ApplicationController
   def edit
   end
 
-  def destroy
-    @team.destroy
-    redirect_to root_path
-  end
-
   def update
     if @team.update(team_params)
-      redirect_to @team, notice: '情報を更新しました'
+      redirect_to team_path(@team), notice: '情報を更新しました'
     else
       render :edit
     end
   end
 
+  def destroy
+    @team.destroy
+    redirect_to root_path, alert: 'チームを削除しました'
+  end
 
   private
 
@@ -42,6 +40,6 @@ class TeamsController < ApplicationController
   end
 
   def set_team
-    @team = Team.find(params[:id])
+    @team = current_user.teams.find(params[:id])
   end
 end

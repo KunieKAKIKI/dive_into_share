@@ -1,0 +1,35 @@
+p
+  strong
+    | カテゴリ名:
+  = @category.name
+p
+  strong
+    | カテゴリの説明:
+  = @category.description if @category.description.present?
+p
+  strong
+    | カテゴリ画像:
+  = image_tag @category.image if @category.image.present?
+p
+  strong
+    | カテゴリ更新日:
+  = l @category.updated_at
+p
+  strong
+    | カテゴリ作成日:
+  = l @category.created_at
+br
+- @team.users.each do |user|
+  .mb-2
+    span.mr-3
+      = user.name
+    span.mr-1
+      = image_tag 'https://picsum.photos/30/30?image=' + rand(100).to_s ,class: "rounded-circle"
+br
+= link_to '編集する', edit_team_category_path(@team, @category) ,class:"btn btn-sm btn-primary mr-2"
+|  |
+= link_to '招待', "#" ,class:"btn btn-sm btn-primary mr-2"
+|  |
+= link_to '投稿', "#" ,class:"btn btn-sm btn-primary mr-2"
+|  |
+= link_to 'カテゴリ削除', team_category_path(@team, @category),method: :delete,data: { confirm: 'チームを削除しても良いですか？' } ,class:"btn btn-sm btn-danger"
