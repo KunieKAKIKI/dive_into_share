@@ -21,6 +21,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
+  def default_url(*args)
+    'http://placehold.jp/200x200.png?text=image'
+  end
+
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #
@@ -44,8 +48,4 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-
-  def default_url
-    'http://placehold.jp/200x200.png?text=image'
-  end
 end
