@@ -7,4 +7,8 @@ class Post < ApplicationRecord
   validates :content, presence: true, length: { maximum: 400 }
 
   delegate :team, to: :category
+
+  scope :accessible, ->(user) do
+    Post.joins(category: :team).where(teams: { id: user.teams.ids })
+  end
 end

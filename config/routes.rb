@@ -9,13 +9,11 @@ Rails.application.routes.draw do
   resources :teams, only: %i() do
     get 'select', on: :member
     resources :categories, only: %i() do
-      resources :posts, only: %i(new create)
+      resources :posts, only: %i(new create), module: :categories
     end
   end
 
-  resources :posts, only: %i(show) do
+  resources :posts, only: %i(show new create) do
     resources :comments, only: %i(create destroy)
   end
-
-  resources :selectable_posts, only: %i(new create)
 end

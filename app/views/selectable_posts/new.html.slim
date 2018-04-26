@@ -1,8 +1,0 @@
-= render 'posts/errors', post: @post
-
-= form_with(model: @post, local: true, url: selectable_posts_path) do |f|
-  .mt-3
-    = render_select_box post: @post, form: f
-    = render 'posts/text_form', form: f
-
-  = f.submit "投稿する", class: "btn btn-primary"

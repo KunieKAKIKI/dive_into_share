@@ -6,7 +6,7 @@ nav.navbar.navbar-expand-md.navbar-light.bg-color-header
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
       li.nav-item
-        = link_to "投稿", new_selectable_post_path, class: "btn btn-primary btn-sm"
+        = link_to "投稿", new_post_path, class: "btn btn-primary btn-sm"
     ul.navbar-nav
       - if user_signed_in?
         .my-auto
