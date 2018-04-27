@@ -5,7 +5,7 @@ p
 p
   strong
     | カテゴリの説明:
-  = @category.description if @category.description.present?
+  = @category.description
 p
   strong
     | カテゴリ画像:
@@ -24,7 +24,7 @@ br
     span.mr-3
       = user.name
     span.mr-1
-      = image_tag 'https://picsum.photos/30/30?image=' + rand(100).to_s ,class: "rounded-circle"
+      = image_tag 'https://picsum.photos/30/30?image=' "#{rand(100)}",class: "rounded-circle"
 br
 = link_to '編集する', edit_team_category_path(@team, @category) ,class:"btn btn-sm btn-primary mr-2"
 |  |
@@ -32,4 +32,4 @@ br
 |  |
 = link_to '投稿', "#" ,class:"btn btn-sm btn-primary mr-2"
 |  |
-= link_to 'カテゴリ削除', team_category_path(@team, @category),method: :delete,data: { confirm: 'チームを削除しても良いですか？' } ,class:"btn btn-sm btn-danger"
+= link_to 'カテゴリ削除', team_category_path(@team, @category),method: :delete,data: { confirm: 'カテゴリを削除しても良いですか？' } ,class:"btn btn-sm btn-danger"

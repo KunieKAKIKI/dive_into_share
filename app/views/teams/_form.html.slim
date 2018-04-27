@@ -6,14 +6,14 @@
           li
             = message
   .field.form-group
-    = form.label :"名前"
+    = form.label :name
     = form.text_field :name,id: :team_name ,class: "form-control"
   .field.form-group
-    = form.label :"チームの説明"
+    = form.label :description
     br
-    = form.text_area :description, id: :team_description ,size: "40x7",class: "form-control"
+    = form.text_area :description, id: :team_description ,size: "40x7", class: "form-control"
   .field.form-group
-    = form.label :"画像"
-    = form.file_field :image,id: :team_image ,class: "form-control"
+    = form.label :image
+    = form.file_field :image,id: :team_image , class: "form-control"
   .actions
     = form.submit

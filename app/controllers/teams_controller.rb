@@ -29,7 +29,8 @@ class TeamsController < ApplicationController
   end
 
   def destroy
-    @team.destroy
+    # TODO: 後でbankenによる権限付与を行う
+    @team.destroy!
     redirect_to root_path, alert: 'チームを削除しました'
   end
 

@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_team, only: %i[new create show edit update destroy]
+  before_action :set_team
   before_action :set_category, only: %i[show edit update destroy]
 
   def new
@@ -30,7 +30,8 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category.destroy
+    # TODO: 後でbankenによる権限付与を行う
+    @category.destroy!
     redirect_to root_path, alert: 'カテゴリを削除しました'
   end
 
