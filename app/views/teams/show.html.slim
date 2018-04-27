@@ -1,36 +1,35 @@
-- if @team.users.exists?(current_user.id)
-  p
-    strong
-      | チーム名:
-    = @team.name
-  p
-    strong
-      | チームの説明:
-    = @team.description if @team.description.present?
-  p
-    strong
-      | チーム画像:
-    = image_tag @team.image if @team.image.present?
-  p
-    strong
-      | チーム更新日:
-    = l @team.updated_at
-  p
-    strong
-      | チーム作成日:
-    = l @team.created_at
+p
+  strong
+    | チーム名:
+  = @team.name
+p
+  strong
+    | チームの説明:
+  = @team.description if @team.description.present?
+p
+  strong
+    | チーム画像:
+  = image_tag @team.image if @team.image.present?
+p
+  strong
+    | チーム更新日:
+  = l @team.updated_at
+p
+  strong
+    | チーム作成日:
+  = l @team.created_at
 br
 - @team.users.each do |user|
   .mb-2
     span.mr-3
       = user.name
     span.mr-1
-      = image_tag 'https://picsum.photos/30/30?image=' + rand(100).to_s ,class: "rounded-circle"
+      = image_tag 'https://picsum.photos/30/30?image=' "#{rand(100)}" ,class: "rounded-circle"
 br
 = link_to '編集する', edit_team_path(@team) ,class:"btn btn-sm btn-primary mr-2"
-|  | 
+|  |
 = link_to '招待', "#" ,class:"btn btn-sm btn-primary mr-2"
-|  | 
+|  |
 = link_to 'カテゴリ作成', new_team_category_path(@team,@category) ,class:"btn btn-sm btn-primary mr-2"
-|  | 
+|  |
 = link_to 'チーム削除', team_path(@team),method: :delete,data: { confirm: 'チームを削除しても良いですか？' } ,class:"btn btn-sm btn-danger"

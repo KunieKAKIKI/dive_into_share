@@ -16,3 +16,11 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
+      team:
+        name: "名前"
+        description: "チームの説明"
+        image: "画像"
+      category:
+        name: "名前"
+        description: "カテゴリの説明"
+        image: "画像"
