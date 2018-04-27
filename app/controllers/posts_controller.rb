@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    render status: :forbidden if @post.category && @post.invalid_category?
+    render status: bad_request if @post.category && @post.invalid_category?
 
     if @post.save
       redirect_to post_path(@post), notice: '投稿を作成しました'
