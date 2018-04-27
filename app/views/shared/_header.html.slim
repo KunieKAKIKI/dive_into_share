@@ -1,11 +1,12 @@
 nav.navbar.navbar-expand-md.navbar-light.bg-color-header
   = link_to 'DIVE INTO SHARE', root_path, class: "navbar-brand"
-  button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"]
+  button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+   aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"]
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
-      li.nav-item.btn-sm.btn-primary
-        = link_to "投稿",'#' ,class: "nav-link text-center"
+      li.nav-item
+        = link_to "投稿", new_post_path, class: "btn btn-primary btn-sm"
     ul.navbar-nav
       - if user_signed_in?
         .my-auto

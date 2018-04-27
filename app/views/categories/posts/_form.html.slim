@@ -1,0 +1,13 @@
+= render '/posts/errors', post: @post
+
+= form_with(model: [team, category, post], local: true) do |form|
+
+  .form-group
+    = form.label :title
+    = form.text_field :title, class: "form-control"
+
+  .form-group
+    = form.label :content
+    = form.text_area :content, class: "form-control"
+
+  = form.submit "投稿する", class: "btn btn-primary"
