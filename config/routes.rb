@@ -5,13 +5,13 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#new'
   end
 
-  #現在のところ未実装なので%iのなかは空白
   resources :teams, only: %i() do
-    resources :categories, only: %i() do
+    resources :categories, only: %i(index) do
+      resources :posts, only: %i(new create), module: :categories
     end
   end
 
-  resources :posts, only: %i(show) do
+  resources :posts, only: %i(show new create) do
     resources :comments, only: %i(create destroy)
   end
 end

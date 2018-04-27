@@ -1,0 +1,13 @@
+= form.label :team_id
+
+- if post.category_id.blank?
+  = select :team_id, :name, team_id_options, { prompt: true }, id: 'select_team'
+- else
+  = select_tag :team_id, options_for_select(team_id_options, post.team.id), id: 'select_team'
+
+= form.label :category_id, class: 'ml-3'
+
+- if post.category_id.blank?
+  = form.collection_select :category_id, [], :id, :name, { prompt: true }, id: 'select_category'
+- else
+  = form.collection_select :category_id, post.team.categories, :id, :name, {}, id: 'select_category'
