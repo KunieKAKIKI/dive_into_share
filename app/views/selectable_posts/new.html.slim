@@ -15,6 +15,15 @@
 
       .mt-3
         = render_select_box post: @post, form: f
+
+        .my-4
+          p.mb-0 画像
+          - if @post.image?
+            span.mx-2
+              = image_tag @post.image.url(:thumb)
+          = f.file_field :image
+          = f.hidden_field :image_cache
+
         = render 'posts/text_form', form: f
 
     .tab-pane.fade#pills-profile role="tabpanel" aria-labelledby="pills-profile-tab"
