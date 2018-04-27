@@ -1,0 +1,20 @@
+= form_with(model: [team,category], local: true ) do |form|
+  = team.name
+  - if category.errors.any?
+    #error_explanation
+      ul
+        - category.errors.full_messages.each do |message|
+          li
+            = message
+  .field.form-group
+    = form.label :name
+    = form.text_field :name,id: :category_name ,class: "form-control"
+  .field.form-group
+    = form.label :description
+    br
+    = form.text_area :description, id: :category_description ,size: "40x7",class: "form-control"
+  .field.form-group
+    = form.label :image
+    = form.file_field :image,id: :category_image ,class: "form-control"
+  .actions
+    = form.submit

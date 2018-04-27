@@ -1,4 +1,7 @@
-p.mb-0 チーム名：#{@post.category.team.name}
+p.mb-0
+  | チーム名：
+  = link_to @post.category.team.name, team_path(@post.category.team)
+
 
 | 参加者：
 - @post.category.team.users.each do |user|

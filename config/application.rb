@@ -6,6 +6,7 @@ module DiveIntoShare
     config.load_defaults 5.1
     config.i18n.available_locales = [:en, :ja]
     config.i18n.default_locale = :ja
+    config.time_zone = 'Tokyo'
     config.generators do |g|
       g.assets false
       g.helper false
