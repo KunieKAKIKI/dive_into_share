@@ -13,12 +13,13 @@ nav.navbar.navbar-expand-md.navbar-light.bg-color-header
           li.nav-item
             span.badge.badge-pill.badge-info.mx-auto.my-auto
               | 0
-
         .my-auto
           li.nav-item
             i.fa.fa-bell[aria-hidden="true"]
-        li.nav-item
-          = link_to "マイページ", "#" ,class: "nav-link"
+
+        .my-auto
+          li.nav-item
+            = link_to "#{current_user.name}さん", edit_user_registration_path(current_user.id) ,class: "nav-link"
         li.nav-item
           = link_to "ログアウト", destroy_user_session_path, method: :delete ,class: "nav-link"
       - else
