@@ -42,6 +42,10 @@
             i.fa.fa-trash.text-primary.ml-2
 
       .card-body
+        - if @post.image.present?
+          .text-center
+            = image_tag @post.image.url, class: 'mb-2'
+
         .card-text.mt-3
           = simple_format @post.content
 
