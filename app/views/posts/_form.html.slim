@@ -11,13 +11,13 @@
           small.ml-3 カテゴリ：
           = category.name
 
-      .my-4
-        p.mb-0 画像
-        - if @post.image?
-          span.mx-2
-            = image_tag @post.image.url(:thumb)
-        = form.file_field :image
-        = form.hidden_field :image_cache
+        .my-4
+          p.mb-0 画像
+          - if @post.image?
+            span.mx-2
+              = image_tag @post.image.url(:thumb)
+          = form.file_field :image
+          = form.hidden_field :image_cache
 
         = render 'posts/text_form', form: form
 
